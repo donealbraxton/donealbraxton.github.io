@@ -1,7 +1,12 @@
 $(document).ready(function(){
 
     $("#search").click(function(){
-        $.getJSON('https://api.scryfall.com' + "/cards/random", function(a){
+        
+        var cardName = document.getElementById('name').value;
+        var cleanCard = cardName.replace(/\s/g, '+');
+        alert(cleanCard);
+
+        $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cleanCard, function(a){
             document.getElementById('artist').innerHTML = "Artist: "+a['artist'];
             document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
             document.getElementById("myImg").src = a['image_uris']['png'];
