@@ -6,6 +6,9 @@ $(document).ready(function(){
             document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
             document.getElementById("myImg").src = a['image_uris']['png'];
             });
+
+            
+
       });
 
 
