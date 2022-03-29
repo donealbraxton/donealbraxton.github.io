@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 
 $("#login-form-submit").click(function(){
         
@@ -17,4 +17,4 @@ $("#login-form-submit").click(function(){
   });
 
 
-});
+}); */

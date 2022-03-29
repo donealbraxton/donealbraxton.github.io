@@ -87,3 +87,8 @@ margin: 0 auto;
   width: 300px;
   border-radius: 4.75% / 3.5%;
 }
+
+.inset{
+  border-color: antiquewhite;
+  border-style:solid;
+}
