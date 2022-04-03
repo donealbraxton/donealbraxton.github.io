@@ -70,7 +70,7 @@
 <!--------- HIDDEN DECK PAGE  -------------------------------------------->
 <div class="container text-left">
         
-  <h1 class="text-sm-left">Deck Name</h1>
+  <h1 id="deckname" class="text-sm-left">Deck Name</h1>
   </div>
   <main class=" container inset">    
 
@@ -94,10 +94,10 @@
         </div>
         <div class="col-sm-2">
           
-          <input type="number" min="1" max="4" value="1" class="col-auto form-control count-text" tooltip="Count">
+          <input id="add-count"type="number" min="1" max="4" value="1" class="col-auto form-control count-text" tooltip="Count">
         </div>
         <div class="col-sm-2">
-          <button class="btn btn-outline-primary">Add</button>
+          <button id="addCard" class="btn btn-outline-primary">Add</button>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@
 
     <div class="container px-3 ">
       <div class="row  mt-5 mb-5">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <img id="myImg" class="card-image" src="" alt="">
           <p id="cardName" class="lead">Card Name: </p>
           <p id="artist" class="lead">Artist: </p>
@@ -117,9 +117,6 @@
         </div>
         <div class="col-sm-3">
           <div id="land-fill"></div>
-        </div>
-        <div class="col-sm-2">
-          <p id=""></p>
         </div>
        
  

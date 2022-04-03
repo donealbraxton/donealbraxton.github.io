@@ -2,45 +2,165 @@ var loggedIn = false;
 var currentDeck = "";
 var currentFormat = "";
 var currentValidSearch = false;
+$.ajaxSetup({
+  async: false
+});
+  //------------------LOGGED IN FUNCTINOS------------------------------------------
+  function cleanCard(x){
+    return x.replace(/\s/g, '+');
+  }
+  
+  function cardAdd(){
+
+  }
+  function cardDelete(){
+
+  }
+  function validateCard(x){
+    var cCard = cleanCard(x);
+    var isValid = false;
+    $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+      isValid = true;
+  });
+return(
+isValid
+  
+);
+
+  }
+function properName(x){
+  var cCard = cleanCard(x);
+  var propName = "";
+  $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+    propName = a["name"];
+});
+return propName;
+}
+  
+function landSpellCheck(x){
+  var cCard = cleanCard(x)
+  var landorspell = null;
+  var isLand = 1;
+  $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+    landorspell = a["type_line"];
+    if(landorspell.includes("land")){
+      island = 0;
+    }
+});
+return isLand;
+}
+
+  function saveDeck(){
+
+  }
+  function isCardAdded(x){
+    var isAdded = false;
+    var cDeck = currentDeck;
+    $.each( cDeck["cards"], function( key, value ) {
+      if(key==x){
+        console.log(key+" "+x);
+        isAdded = true;
+      }
+    });
+    $.each( cDeck["lands"], function( key, value ) {
+      if(key==x){
+        console.log(key+" "+x);
+        isAdded = true;
+      }
+    });
+    return isAdded;
+  }
 
 
-$(document).ready(function() {
 
 //------BUTTON TRIGGERS ------------------------------------------------------------------
+$(document).ready(function(){
 
-$("#login-form").submit(function(e){
+  updateLowerData("Reanimate");
+  
+      $("#search").click(function(){
+          
+          var cardName = document.getElementById('name').value;
+          var cCard = cleanCard(cardName);
+  
+          $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+              document.getElementById('artist').innerHTML = "Artist: "+a['artist'];
+              document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
+              document.getElementById("myImg").src = a['image_uris']['png'];
+           
+  
+              }).fail(function() {  });
+  
+              
+  
+        });
+        
+        $("#login-form").submit(function(e){
     
-    $.ajax({
-        url: 'https://doncards-fa13.restdb.io/rest/decks',
-        type: 'GET',
-        dataType: 'json',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-apikey': '6242758367937c128d7c92b6'
-        },
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {             
-        
-             var x = document.getElementById('inputUser').value
-            var y = document.getElementById('inputPassword').value; 
-            if (x === result[0]["username"] && y === result[0]["password"]) {
-                setCookie("username", x, 365);
-                loggedIn = true;
-                off();
-        
-            } else {
-                alert("Incorrect Password");
+          $.ajax({
+              url: 'https://doncards-fa13.restdb.io/rest/decks',
+              type: 'GET',
+              dataType: 'json',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'x-apikey': '6242758367937c128d7c92b6'
+              },
+              contentType: 'application/json; charset=utf-8',
+              success: function (result) {             
+              
+                   var x = document.getElementById('inputUser').value
+                  var y = document.getElementById('inputPassword').value; 
+                  if (x === result[0]["username"] && y === result[0]["password"]) {
+                      setCookie("username", x, 365);
+                      loggedIn = true;
+                      off();
+              
+                  } else {
+                      alert("Incorrect Password");
+                  }
+              },
+              error: function (error) {
+                  alert("not working");
+              }
+          });
+          e.preventDefault();
+        });
+
+  
+        $("#addCard").click(function(){
+          var name = properName(document.getElementById('name').value);
+          var count = document.getElementById('add-count').value;
+          var landorspell = landSpellCheck(name);
+          if(count<5&&count>0){//check if count is a valid number
+            if(validateCard(name)){//check if card is a valid card
+              alert(isCardAdded(name));
+              if(landSpellCheck(name)==0){
+                $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"value="'+count
+                +'" class="form-control count-text"> </div><div class="col-lg">'+
+                '<p onmouseover="showcard(this)" class="card-text">'+name+
+                '</p></div></div>'
+                  )
+              }
+              else{
+                $("#card-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1" max="4" value="'+count
+                +'" class="form-control count-text"> </div><div class="col-lg">'+
+                '<p onmouseover="showcard(this)" class="card-text">'+name+
+                '</p></div></div>'
+                  )
+              }
+
+            }else{
+              alert("not valid card")
             }
-        },
-        error: function (error) {
-            alert("not working");
-        }
+          }else{
+            alert("not valid number");
+          }
+        });
+  
     });
-    e.preventDefault();
-  });
 
 
-});
+
 
 
 //------------------------------------------------------------------------------
@@ -89,23 +209,30 @@ function setCookie(cname, cvalue, exdays) {
   
   function off() {
     var testerArr = {
+      "name":"ThoughtCast",
       "cards":{
         "Reanimate":1,
         "Plant":4
-      }};
-    deckLoad(testerArr["cards"]);
+      },
+        "lands":{
+          "Swamp":5
+        }
+      };
+    deckLoad(testerArr);
     document.getElementById("overlay").style.display = "none";
 
   }
-function cardValidate(cardName){
-  $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cardName, function(a){
-    return true;
-        });
-        return true;
-}
+
+
   function deckLoad(x){
-    $.each( x, function( key, value ) {
-      if(cardValidate(key)){
+    var spells = x["cards"];
+    var lands = x["lands"];
+    var deckName = x["name"];
+    currentDeck=x;
+    $("#deckname").empty().append(deckName);
+
+    $.each( spells, function( key, value ) {
+      if(validateCard(key)){
         $("#card-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1" max="4" value="'+value
         +'" class="form-control count-text"> </div><div class="col-lg">'+
         '<p onmouseover="showcard(this)" class="card-text">'+key+
@@ -113,9 +240,9 @@ function cardValidate(cardName){
           )
       }
     });
-    $.each( x, function( key, value ) {
-      if(cardValidate(key)){
-        $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1" max="4" value="'+value
+    $.each( lands, function( key, value ) {
+      if(validateCard(key)){
+        $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"value="'+value
         +'" class="form-control count-text"> </div><div class="col-lg">'+
         '<p onmouseover="showcard(this)" class="card-text">'+key+
         '</p></div></div>'
@@ -124,23 +251,55 @@ function cardValidate(cardName){
     });
   }
 
-  //LOGGED IN FUNCTINOS------------------------------------------
 
-  function cardAdd(){
-
-  }
-  function cardDelete(){
-
-  }
-  function validateCard(){
-
-  }
-  function saveDeck(){
-
-  }
+  //-----------COMMUNICATE WITH SCRYFALL-------------------------------------------------
+  var timeoutId= 0;
+function keyupFunction() {
+    clearTimeout(timeoutId); // doesn't matter if it's 0
+    timeoutId = setTimeout(getFilteredResultCount, 500);
 
 
+}
+
+function getFilteredResultCount(){
+    var cardName = document.getElementById('name').value;
+    updateCardData(cardName);
+    updateLowerData(cardName);
+}
+function onmouseover(x){
+    var cardName = x.innerHTML;
+    updateLowerData(cardName);
+}
+
+function updateCardData(x){
+    
+    var cCard = cleanCard(x);
+    $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+        document.getElementById('search-artist').innerHTML = "Artist: "+a['artist'];
+        document.getElementById('search-cardName').innerHTML = "Card Name: "+a['name'];
+        document.getElementById("myImg").src = a['image_uris']['png'];
+     
+
+        });
+}
+function updateLowerData(x){
+  var cCard = x.replace(/\s/g, '+');
+
+    $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+        document.getElementById('artist').innerHTML = "Artist: "+a['artist'];
+        document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
+        document.getElementById("myImg").src = a['image_uris']['png'];
+     
+
+        });
+}
 
 
+function showcard(x){
+    clearTimeout(timeoutId); // doesn't matter if it's 0
+    timeoutId = setTimeout(onmouseover(x), 500);
 
-  
+}
+
+
+  //---------------------------------------------------------------------
