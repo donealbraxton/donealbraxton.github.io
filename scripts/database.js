@@ -21,6 +21,8 @@ $("#login-form").submit(function(e){
             alert(result[0]["username"]);
             if (x === result[0]["username"] && y === result[0]["password"]) {
                 alert("You have successfully logged in.");
+                setCookie("username", x, 365);
+                off();
         
             } else {
                 alert("You have clicked the Sign in Button.");
@@ -65,12 +67,13 @@ function setCookie(cname, cvalue, exdays) {
       alert("Welcome again " + user);
       
       off();
-    } else {
+    } else {/*
+    
       user = prompt("Please enter your name:", "");
       if (user != "" && user != null) {
         setCookie("username", user, 365);
         on();
-      }
+      }*/
     }
   }
 
@@ -80,4 +83,5 @@ function setCookie(cname, cvalue, exdays) {
   
   function off() {
     document.getElementById("overlay").style.display = "none";
+
   }

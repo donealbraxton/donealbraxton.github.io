@@ -30,12 +30,13 @@
   </style>
 
   <link href="css\cover.css" rel="stylesheet">
+  <link href="css\styles.css" rel="stylesheet">
 </head>
 
 <body onload="checkCookie()" class="d-flex h-100 text-center text-white bg-dark">
 
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <div class="d-flex w-100 h-100 p-3 mx-auto flex-column bg-dark">
     <header class="mb-auto">
       <div>
         <h3 class="float-md-start mb-0"></h3>
@@ -64,6 +65,66 @@
       <button id="login-form-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
   </main>
+<!--------- HIDDEN DECK PAGE  -------------------------------------------->
+<div class="container text-left">
+        
+  <h1 class="text-sm-left">Deck Name</h1>
+  </div>
+  <main class=" container inset">    
+
+    <div class="container px-3 ">
+      <div class="row  mt-5 mb-5">
+        <div class="col-sm">
+
+          <div class="input-group">
+            <input id="name" onkeydown="keyupFunction()" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button id="search" type="button" class="btn btn-outline-primary">search</button>
+          </div>
+
+        </div>
+        <div class="col-sm">
+          
+          <p id="artist" class="lead">Artist: </p>
+        </div>
+        <div class="col-sm">
+          
+         <p id="cardName" class="lead">Card Name: </p>
+        </div>
+        <div class="col-sm">
+     <!--
+    <img id="myImg" class="card-image" src="" alt="">
+  -->     
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <main class=" container inset">    
+
+    <div class="container px-3 ">
+      <div class="row  mt-5 mb-5">
+        <div class="col-sm-4">
+          <img id="myImg" class="card-image" src="" alt="">
+
+        </div>
+        <div class="col-sm-8">
+          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
+          <p onmouseover="showcard(this)" class="card-text">Austere Command</p>
+          <p onmouseover="showcard(this)" class="card-text">Wrath of God</p>
+          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
+          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
+        </div>
+ 
+      </div>
+    </div>
+
+  </main>
+
+
+
+
+
+<!-------------------------------------------------------------------------->
 
     <footer class="mt-auto text-white-50">
       <pclass="text-white">Doneal Bercier</p>
