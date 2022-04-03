@@ -92,3 +92,7 @@ html{
     border-color: antiquewhite;
     border-style:solid;
   }
+
+  .card-text:hover{
+    color:antiquewhite
+  }
