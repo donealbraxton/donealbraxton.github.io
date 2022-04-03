@@ -1,12 +1,15 @@
+var loggedIn = false;
+var currentDeck = "";
+var currentFormat = "";
+var currentValidSearch = false;
+
+
 $(document).ready(function() {
 
-//------------------------------------------------------------------------
+//------BUTTON TRIGGERS ------------------------------------------------------------------
 
 $("#login-form").submit(function(e){
     
-    var x = document.getElementById('inputUser').value
-    var y = document.getElementById('inputPassword').value; 
-    alert("clicked");
     $.ajax({
         url: 'https://doncards-fa13.restdb.io/rest/decks',
         type: 'GET',
@@ -18,14 +21,15 @@ $("#login-form").submit(function(e){
         contentType: 'application/json; charset=utf-8',
         success: function (result) {             
         
-            alert(result[0]["username"]);
+             var x = document.getElementById('inputUser').value
+            var y = document.getElementById('inputPassword').value; 
             if (x === result[0]["username"] && y === result[0]["password"]) {
-                alert("You have successfully logged in.");
                 setCookie("username", x, 365);
+                loggedIn = true;
                 off();
         
             } else {
-                alert("You have clicked the Sign in Button.");
+                alert("Incorrect Password");
             }
         },
         error: function (error) {
@@ -36,8 +40,10 @@ $("#login-form").submit(function(e){
   });
 
 
-
 });
+
+
+//------------------------------------------------------------------------------
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -65,7 +71,7 @@ function setCookie(cname, cvalue, exdays) {
     let user = getCookie("username");
     if (user != "") {
       alert("Welcome again " + user);
-      
+      loggedIn = true;
       off();
     } else {/*
     
@@ -82,6 +88,59 @@ function setCookie(cname, cvalue, exdays) {
   }
   
   function off() {
+    var testerArr = {
+      "cards":{
+        "Reanimate":1,
+        "Plant":4
+      }};
+    deckLoad(testerArr["cards"]);
     document.getElementById("overlay").style.display = "none";
 
   }
+function cardValidate(cardName){
+  $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cardName, function(a){
+    return true;
+        });
+        return true;
+}
+  function deckLoad(x){
+    $.each( x, function( key, value ) {
+      if(cardValidate(key)){
+        $("#card-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1" max="4" value="'+value
+        +'" class="form-control count-text"> </div><div class="col-lg">'+
+        '<p onmouseover="showcard(this)" class="card-text">'+key+
+        '</p></div></div>'
+          )
+      }
+    });
+    $.each( x, function( key, value ) {
+      if(cardValidate(key)){
+        $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1" max="4" value="'+value
+        +'" class="form-control count-text"> </div><div class="col-lg">'+
+        '<p onmouseover="showcard(this)" class="card-text">'+key+
+        '</p></div></div>'
+          )
+      }
+    });
+  }
+
+  //LOGGED IN FUNCTINOS------------------------------------------
+
+  function cardAdd(){
+
+  }
+  function cardDelete(){
+
+  }
+  function validateCard(){
+
+  }
+  function saveDeck(){
+
+  }
+
+
+
+
+
+  

@@ -15,6 +15,8 @@ html{
       font-size: 3.5rem;
     }
   }
+
+
   /*
 * Globals
 */
@@ -98,8 +100,7 @@ margin: 0 auto;
   position:fixed;
   display: block;
   width: 100%;
-  height: 100%;
-  top: 0;
+  height: 90%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -121,4 +122,31 @@ margin: 0 auto;
   margin-right: 0;
   margin-left: 0;
   border-width: 0.2rem;
+}
+.card-text{
+  text-align:left;
+}
+.count-text{
+  text-align:right;
+  color:bisque;
+  background-color:#333;
+  color:#fff;
+}
+input:focus{
+  text-align:right!important; 
+  color:bisque !important;
+  background-color:rgb(78, 76, 76)!important;
+  color:#fff!important;
+}  
+.form-control{
+  text-align:right;
+  color:bisque;
+  background-color:#333;
+  color:#fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -25,6 +25,8 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="scripts/myscripts.js"></script>
   <script src="scripts/database.js"></script>
+  
+  <script src="scripts/apiCalls.js"></script>
   <style>
 
   </style>
@@ -33,7 +35,7 @@
   <link href="css\styles.css" rel="stylesheet">
 </head>
 
-<body onload="checkCookie()" class="d-flex h-100 text-center text-white bg-dark">
+<body onload="checkCookie()" class="d-flex h-100  text-white bg-dark">
 
 
   <div class="d-flex w-100 h-100 p-3 mx-auto flex-column bg-dark">
@@ -42,15 +44,15 @@
         <h3 class="float-md-start mb-0"></h3>
         <nav class="nav nav-masthead justify-content-center float-md-end">
           <a class="nav-link" href="index.html">Home</a>
-          <a class="nav-link active" aria-current="page" href="">Log In</a>
+          <a class="nav-link active" aria-current="page" href="">Decks</a>
           <a class="nav-link" href="decks.html">About
           </a>
-          <a class="nav-link" href="#">Scryfall</a>
+          <a class="nav-link" href="https://scryfall.com/docs/api">Scryfall</a>
         </nav>
       </div>
     </header>
-
-     <main id="overlay" class="px-3 flex-column bg-dark overlay justify-content-center o-con">
+<!--------- HIDDEN DECK PAGE  -------------------------------------------->
+     <main id="overlay" class="text-center px-3 flex-column bg-dark overlay justify-content-center o-con">
     <form id="login-form" class="form-signin inset mx-auto">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputUser" class="sr-only">Username</label>
@@ -82,38 +84,44 @@
           </div>
 
         </div>
-        <div class="col-sm">
+        <div class="col-sm-2">
           
-          <p id="artist" class="lead">Artist: </p>
+          <p id="search-artist" class="lead">Artist: </p>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-2">
           
-         <p id="cardName" class="lead">Card Name: </p>
+         <p id="search-cardName" class="lead">Card Name: </p>
         </div>
-        <div class="col-sm">
-     <!--
-    <img id="myImg" class="card-image" src="" alt="">
-  -->     
+        <div class="col-sm-2">
+          
+          <input type="number" min="1" max="4" value="1" class="col-auto form-control count-text" tooltip="Count">
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-outline-primary">Add</button>
         </div>
       </div>
     </div>
 
   </main>
-  <main class=" container inset">    
+  <main class=" container inset text-center">    
 
     <div class="container px-3 ">
       <div class="row  mt-5 mb-5">
         <div class="col-sm-4">
           <img id="myImg" class="card-image" src="" alt="">
-
+          <p id="cardName" class="lead">Card Name: </p>
+          <p id="artist" class="lead">Artist: </p>
         </div>
-        <div class="col-sm-8">
-          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
-          <p onmouseover="showcard(this)" class="card-text">Austere Command</p>
-          <p onmouseover="showcard(this)" class="card-text">Wrath of God</p>
-          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
-          <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
+        <div class="col-sm-3">
+          <div id="card-fill"></div>
         </div>
+        <div class="col-sm-3">
+          <div id="land-fill"></div>
+        </div>
+        <div class="col-sm-2">
+          <p id=""></p>
+        </div>
+       
  
       </div>
     </div>

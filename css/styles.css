@@ -94,6 +94,8 @@ html{
   }
 
   .card-text:hover{
-    color:antiquewhite
+    color:antiquewhite;
+    text-decoration:underline;
+    opacity: 30;
   }
 
