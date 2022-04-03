@@ -1,6 +1,7 @@
 <html lang="en" class="h-100">
 
 <head>
+
   <title>Senior Project</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
@@ -33,6 +34,7 @@
 
 <body onload="checkCookie()" class="d-flex h-100 text-center text-white bg-dark">
 
+
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
@@ -47,24 +49,21 @@
       </div>
     </header>
 
-    <main>
-
-      <form id="login-form" class="form-signin inset">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputUser" class="sr-only">Username</label>
-        <input type="text" id="inputUser" class="form-control" placeholder="Username" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button id="login-form-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-    </main>
-
-
+     <main id="overlay" class="px-3 flex-column bg-dark overlay justify-content-center o-con">
+    <form id="login-form" class="form-signin inset mx-auto">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputUser" class="sr-only">Username</label>
+      <input type="text" id="inputUser" class="form-control" placeholder="Username" required="" autofocus="">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id="login-form-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </main>
 
     <footer class="mt-auto text-white-50">
       <pclass="text-white">Doneal Bercier</p>
