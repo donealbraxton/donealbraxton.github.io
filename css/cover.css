@@ -89,6 +89,7 @@ margin: 0 auto;
   border-radius: 4.75% / 3.5%;
 }
 
+
 .inset{
       /* border-color: antiquewhite; */
       backdrop-filter: brightness(0.9);
@@ -133,6 +134,7 @@ margin: 0 auto;
   color:bisque;
   background-color:#333;
   color:#fff;
+  max-width:fit-content;
 }
 input:focus{
   text-align:right!important; 

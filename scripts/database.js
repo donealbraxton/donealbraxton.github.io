@@ -2,6 +2,14 @@ var loggedIn = false;
 var currentDeck = "";
 var currentFormat = "";
 var currentValidSearch = false;
+var symbolUrl = "https://api.scryfall.com/symbology";
+var fuzzyUrl = "https://api.scryfall.com/cards/named?fuzzy="
+var SYMBOLS = null;
+$.getJSON(symbolUrl, function(a){
+  SYMBOLS = a["data"];
+  });
+
+
 $.ajaxSetup({
   async: false
 });
@@ -19,7 +27,7 @@ $.ajaxSetup({
   function validateCard(x){
     var cCard = cleanCard(x);
     var isValid = false;
-    $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+    $.getJSON(fuzzyUrl+cCard, function(a) {
       isValid = true;
   });
 return(
@@ -31,7 +39,7 @@ isValid
 function properName(x){
   var cCard = cleanCard(x);
   var propName = "";
-  $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+  $.getJSON(fuzzyUrl+cCard, function(a) {
     propName = a["name"];
 });
 return propName;
@@ -41,10 +49,11 @@ function landSpellCheck(x){
   var cCard = cleanCard(x)
   var landorspell = null;
   var isLand = 1;
-  $.getJSON("https://api.scryfall.com/cards/named?fuzzy="+cCard, function(a) {
+  $.getJSON(fuzzyUrl+cCard, function(a) {
     landorspell = a["type_line"];
-    if(landorspell.includes("land")){
-      island = 0;
+    alert(landorspell);
+    if(landorspell.includes("Land")){
+      isLand = 0;
     }
 });
 return isLand;
@@ -71,6 +80,26 @@ return isLand;
     return isAdded;
   }
 
+  function symbolImg(x){
+
+    var seperateSymb = x.split("");
+    var filtered = seperateSymb.filter(function(value, index, arr){ 
+      return value !='{'&&value!='}';
+  });
+  
+  var symbURL = "";
+    filtered.forEach(element =>{
+      var truesymb ='{'+element+'}'
+      SYMBOLS.forEach(symbol => {
+        if(symbol["symbol"]==truesymb){
+          symbURL += '<img id="mana-cost" class="symbol-img" src="'+symbol["svg_uri"]+'"></img>';
+        }
+      });
+    });
+    
+   
+    return symbURL;
+  }
 
 
 //------BUTTON TRIGGERS ------------------------------------------------------------------
@@ -83,10 +112,11 @@ $(document).ready(function(){
           var cardName = document.getElementById('name').value;
           var cCard = cleanCard(cardName);
   
-          $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+          $.getJSON(fuzzyUrl+cCard, function(a){
               document.getElementById('artist').innerHTML = "Artist: "+a['artist'];
               document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
               document.getElementById("myImg").src = a['image_uris']['png'];
+              document.getElementById("mana-cost").innerHTML = "Mana Cost: "+a['mana_cost'];
            
   
               }).fail(function() {  });
@@ -133,7 +163,7 @@ $(document).ready(function(){
           var landorspell = landSpellCheck(name);
           if(count<5&&count>0){//check if count is a valid number
             if(validateCard(name)){//check if card is a valid card
-              alert(isCardAdded(name));
+              alert(landSpellCheck(name));
               if(landSpellCheck(name)==0){
                 $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"value="'+count
                 +'" class="form-control count-text"> </div><div class="col-lg">'+
@@ -243,7 +273,7 @@ function setCookie(cname, cvalue, exdays) {
     });
     $.each( lands, function( key, value ) {
       if(validateCard(key)){
-        $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"value="'+value
+        $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number" min="1"max="20"value="'+value
         +'" class="form-control count-text"> </div><div class="col-lg">'+
         '<p onmouseover="showcard(this)" class="card-text">'+key+
         '</p></div></div>'
@@ -275,10 +305,11 @@ function onmouseover(x){
 function updateCardData(x){
     
     var cCard = cleanCard(x);
-    $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+    $.getJSON(fuzzyUrl+cCard, function(a){
         document.getElementById('search-artist').innerHTML = "Artist: "+a['artist'];
         document.getElementById('search-cardName').innerHTML = "Card Name: "+a['name'];
         document.getElementById("myImg").src = a['image_uris']['png'];
+        document.getElementById("mana-cost").innerHTML = symbolImg(a['mana_cost']);
      
 
         });
@@ -286,10 +317,10 @@ function updateCardData(x){
 function updateLowerData(x){
   var cCard = x.replace(/\s/g, '+');
 
-    $.getJSON('https://api.scryfall.com/cards/named?fuzzy='+cCard, function(a){
+    $.getJSON(fuzzyUrl+cCard, function(a){
         document.getElementById('artist').innerHTML = "Artist: "+a['artist'];
         document.getElementById('cardName').innerHTML = "Card Name: "+a['name'];
-        document.getElementById("myImg").src = a['image_uris']['png'];
+        document.getElementById("myImg").innerHTML = a['image_uris']['png'];
      
 
         });
