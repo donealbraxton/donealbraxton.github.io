@@ -220,7 +220,7 @@ function setCookie(cname, cvalue, exdays) {
       };
     deckLoad(testerArr);
     document.getElementById("overlay").style.display = "none";
-
+    $('.hidden').css('display', 'inline');
   }
 
 
@@ -230,6 +230,7 @@ function setCookie(cname, cvalue, exdays) {
     var deckName = x["name"];
     currentDeck=x;
     $("#deckname").empty().append(deckName);
+    var deleteButton ='<button type="button" class="col-sm btn btn-danger">Danger</button>';
 
     $.each( spells, function( key, value ) {
       if(validateCard(key)){

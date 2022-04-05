@@ -88,10 +88,6 @@ html{
     border-radius: 4.75% / 3.5%;
   }
 
-  .inset{
-    border-color: antiquewhite;
-    border-style:solid;
-  }
 
   .card-text:hover{
     color:antiquewhite;

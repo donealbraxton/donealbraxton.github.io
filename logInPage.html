@@ -1,4 +1,4 @@
-<html lang="en" class="h-100">
+<html lang="en" class="">
 
 <head>
 
@@ -35,10 +35,10 @@
   <link href="css\styles.css" rel="stylesheet">
 </head>
 
-<body onload="checkCookie()" class="d-flex h-100  text-white bg-dark">
+<body class="text-white bg-dark">
+<div  onload="checkCookie()" class=" bg-dark"></div>
 
-
-  <div class="d-flex w-100 h-100 p-3 mx-auto flex-column bg-dark">
+  <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
         <h3 class="float-md-start mb-0"></h3>
@@ -52,7 +52,7 @@
       </div>
     </header>
 <!--------- HIDDEN DECK PAGE  -------------------------------------------->
-     <main id="overlay" class="text-center px-3 flex-column bg-dark overlay justify-content-center o-con">
+     <main id="overlay" class="text-center px-3 flex-column  overlay justify-content-center o-con">
     <form id="login-form" class="form-signin inset mx-auto">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputUser" class="sr-only">Username</label>
@@ -68,11 +68,11 @@
     </form>
   </main>
 <!--------- HIDDEN DECK PAGE  -------------------------------------------->
-<div class="container text-left">
+<div class="hidden container text-left">
         
   <h1 id="deckname" class="text-sm-left">Deck Name</h1>
   </div>
-  <main class=" container inset">    
+  <main class="hidden container inset">    
 
     <div class="container px-3 ">
       <div class="row  mt-5 mb-5">
@@ -86,11 +86,11 @@
         </div>
         <div class="col-sm-2">
           
-          <p id="search-artist" class="lead">Artist: </p>
+          <p id="search-artist" class="lead"> </p>
         </div>
         <div class="col-sm-2">
           
-         <p id="search-cardName" class="lead">Card Name: </p>
+         <p id="search-cardName" class="lead"></p>
         </div>
         <div class="col-sm-2">
           
@@ -103,7 +103,7 @@
     </div>
 
   </main>
-  <main class=" container inset text-center">    
+  <main class="hidden container inset text-center">    
 
     <div class="container px-3 ">
       <div class="row  mt-5 mb-5">
