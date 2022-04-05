@@ -165,7 +165,7 @@ $(document).ready(function(){
             if(validateCard(name)){//check if card is a valid card
               alert(landSpellCheck(name));
               if(landSpellCheck(name)==0){
-                $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"value="'+count
+                $("#land-fill").append('<div class="row"><div class="col-sm"><input type="number"min="1"max="20" value="'+count
                 +'" class="form-control count-text"> </div><div class="col-lg">'+
                 '<p onmouseover="showcard(this)" class="card-text">'+name+
                 '</p></div></div>'
