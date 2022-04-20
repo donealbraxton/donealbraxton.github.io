@@ -390,6 +390,20 @@ function checkCookie() {
   let user = getCookie("username");
   if (user != "") {
     alert("Welcome again " + user);
+    $.ajax({
+      url: 'https://doncards-fa13.restdb.io/rest/decks?q={"username": "'+
+      getCookie("username")+'"}',
+      type: 'GET',
+      dataType: 'json',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-apikey': '6242758367937c128d7c92b6'
+      },
+      contentType: 'application/json; charset=utf-8',
+      success: function (result) {
+        CURRENTID = result[0]["_id"];
+      }
+    });
     loggedIn = true;
     off();
   } else {/*
@@ -407,7 +421,7 @@ function on() {
 }
 
 function off() {
-
+  
   deckLoad(currentDeck);
   retrieveDecks();
   document.getElementById("overlay").style.display = "none";
