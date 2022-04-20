@@ -87,7 +87,7 @@ html{
   }
   .card-image{
     width: 100%;
-    width: 250px;
+    width: 200px;
     border-radius: 4.75% / 3.5%;
   }
 
@@ -98,3 +98,31 @@ html{
     opacity: 30;
   }
 
+  .card-block {
+    min-height: 100px;
+  background-color: rgba(76, 175, 80, 0)!important;
+  border-color:#fff;
+  border-width:1px;
+  padding: 20;
+  cursor: pointer;
+  backdrop-filter: brightness(0.9);
+  background-color: #333;
+  color: white;
+}
+
+/*----------------------------*/
+
+.floating { 
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}

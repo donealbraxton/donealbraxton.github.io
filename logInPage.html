@@ -45,7 +45,7 @@
         <nav class="nav nav-masthead justify-content-center float-md-end">
           <a class="nav-link" href="index.html">Home</a>
           <a class="nav-link active" aria-current="page" href="">Decks</a>
-          <a class="nav-link" href="decks.html">About
+          <a class="nav-link" href="about.html">About
           </a>
           <a class="nav-link" href="https://scryfall.com/docs/api">Scryfall</a>
         </nav>
@@ -68,10 +68,31 @@
     </form>
   </main>
 <!--------- HIDDEN DECK PAGE  -------------------------------------------->
-<div class="hidden container text-left">
+
+  <div class="hidden container text-left">
+    <div class="row">
+      <div class="col-sm-6">
+        <input type="text" id="deckname" class="text-sm-left"></input>
+      </div>
+      <div class="col-sm-2">
         
-  <h1 id="deckname" class="text-sm-left">Deck Name</h1>
+      </div>
+     
+      <div class="col-sm-4 align-self-end">
+        <div class="input-group">
+        <button id="deleteDeck" class="btn btn-outline-danger">Delete</button><button id="saveDeck" class="btn btn-outline-primary">Save</button>
+      </div>
+     <!---- <button id="TEST">TEST</button>-->
+    </div>
+     
+
+    </div>
+  
   </div>
+
+
+
+
   <main class="hidden container inset">    
 
     <div class="container px-3 ">
@@ -80,7 +101,7 @@
 
           <div class="input-group">
             <input id="name" onkeydown="keyupFunction()" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button id="search" type="button" class="btn btn-outline-primary">search</button>
+            <button id="search" type="button" class="btn btn-outline-primary">Search</button>
           </div>
 
         </div>
@@ -127,7 +148,20 @@
     </div>
 
   </main>
+  <main class="hidden container inset text-center">    
 
+    <div class="container px-3 mb-2  overflow-auto ">
+      <div id="deckRoll" class="row flex-nowrap mt-2 mb-2">
+        <div class="col-sm-3">
+          <div class="card card-block">1</div>
+        </div>
+
+  
+ 
+      </div>
+    </div>
+
+  </main>
 
 
 
