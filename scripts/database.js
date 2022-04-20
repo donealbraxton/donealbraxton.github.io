@@ -289,6 +289,7 @@ $(document).ready(function () {
       type: 'POST',
       dataType: 'json',
       data:currentDeck,
+      "Access-Control-Allow-Origin": "*",
       headers: {
         'Content-Type': 'application/json',
         'x-apikey': '6242758367937c128d7c92b6'
