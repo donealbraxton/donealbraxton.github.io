@@ -274,7 +274,7 @@ $(document).ready(function () {
   $("#addCard").click(function (e) {
     var name = properName(document.getElementById('name').value);
     var count = Number(document.getElementById('add-count').value);
-    if (count < 5 && count > 0) {//check if count is a valid number
+    if (count < 50 && count > 0) {//check if count is a valid number
       if (validateCard(name)&&!isInDeck(name)) {//check if card is a valid card
 
         if (landSpellCheck(name) == 0) {
