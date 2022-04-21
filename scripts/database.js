@@ -29,7 +29,7 @@ $.ajaxSetup({
   async: false
 });
 
-//------------------Set UP Functions
+//------------------Set UP Functions----------------
 
 
 function retrieveDecks(){
@@ -54,8 +54,20 @@ function retrieveDecks(){
     });
 }
 
+//----------------------BROKEN CODE GRAVEYARD -----------------------------
+/*function keyupCount(){
+  clearTimeout(timeoutId);
+  
+  alert($(this).attr('id'));
+}*/
 
-
+/*
+    
+      user = prompt("Please enter your name:", "");
+      if (user != "" && user != null) {
+        setCookie("username", user, 365);
+        on();
+      }*/
 
 
 //------------------LOGGED IN FUNCTINOS------------------------------------------
@@ -439,13 +451,7 @@ function checkCookie() {
     });
     loggedIn = true;
     off();
-  } else {/*
-    
-      user = prompt("Please enter your name:", "");
-      if (user != "" && user != null) {
-        setCookie("username", user, 365);
-        on();
-      }*/
+  } else {
   }
 }
 
@@ -501,12 +507,6 @@ function onmouseover(x) {
   var cardName = x.innerHTML;
   updateLowerData(cardName);
 }
-
-/*function keyupCount(){
-  clearTimeout(timeoutId);
-  
-  alert($(this).attr('id'));
-}*/
 
 
 function updateCardData(x) {
