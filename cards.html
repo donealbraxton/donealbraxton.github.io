@@ -16,6 +16,7 @@
     
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cover.css">
     <script src="scripts/apiCalls.js"></script>
         
     
@@ -29,79 +30,31 @@
           <h3 class="float-md-start mb-0"></h3>
           <nav class="nav nav-masthead justify-content-center float-md-end">
             <a class="nav-link"  href="index.html">Home</a>
-            <a class="nav-link " href="">Log In</a>
+            <a class="nav-link active" aria-current="page" href="#">Log In</a>
             <a class="nav-link" href="about.html">About
             </a>
-            <a class="nav-link active" aria-current="page" href="#">Scryfall</a>
+            <a class="nav-link " href="https://scryfall.com/docs/api" >Scryfall</a>
           </nav>
         </div>
       </header>
 
-
-      <div class="container text-left">
-        
-      <h1 class="text-sm-left">Deck Name</h1>
-      </div>
-      <main class=" container inset">    
-
-        <div class="container px-3 ">
-          <div class="row  mt-5 mb-5">
-            <div class="col-sm">
-
-              <div class="input-group">
-                <input id="name" onkeydown="keyupFunction()" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button id="search" type="button" class="btn btn-outline-primary">search</button>
-              </div>
-
+        <main id="overlay" class="text-center px-3 flex-column  overlay justify-content-center o-con">
+          <form id="login-form" class="form-signin inset mx-auto">
+            <h1 class="h3 mb-3 font-weight-normal">Sign Up Here!</h1>
+            <label for="inputUser" class="sr-only">Username</label>
+            <input type="text" id="inputUser" class="form-control" placeholder="Username" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <label for="inputPassword" class="sr-only">Confirm Password</label>
+            <input type="password" id="inputCPassword" class="form-control" placeholder="Confirm Password" required="">
+            <div class="checkbox mb-3">
+              <label>
+                <a href="logInPage.html">I Already Have an Account</a>
+              </label>
             </div>
-            <div class="col-sm">
-              
-              <p id="artist" class="lead">Artist: </p>
-            </div>
-            <div class="col-sm">
-              
-             <p id="cardName" class="lead">Card Name: </p>
-            </div>
-            <div class="col-sm">
-         <!--
-        <img id="myImg" class="card-image" src="" alt="">
-      -->     
-            </div>
-          </div>
-        </div>
-
-      </main>
-      <main class=" container inset">    
-
-        <div class="container px-3 ">
-          <div class="row  mt-5 mb-5">
-            <div class="col-sm-4">
-              <img id="myImg" class="card-image" src="" alt="">
-
-            </div>
-            <div class="col-sm-8">
-              <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
-              <p onmouseover="showcard(this)" class="card-text">Austere Command</p>
-              <p onmouseover="showcard(this)" class="card-text">Wrath of God</p>
-              <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
-              <p onmouseover="showcard(this)" class="card-text">Reanimate</p>
-            </div>
-     
-          </div>
-        </div>
-
-      </main>
-
-
-
-
-
-
-
-
-
-
-
+            <button id="login-form-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+          </form>
+        </main>
 
       
       <footer class="mt-auto text-white-50">

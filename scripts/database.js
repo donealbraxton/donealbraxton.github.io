@@ -289,10 +289,10 @@ $(document).ready(function () {
       type: 'POST',
       dataType: 'json',
       data:currentDeck,
-      "Access-Control-Allow-Origin": "*",
       headers: {
         'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6'
+        'x-apikey': '6242758367937c128d7c92b6',
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       contentType: 'application/json; charset=utf-8',
       success: function (result) {      }
@@ -307,23 +307,54 @@ $(document).ready(function () {
     data:currentDeck,
     headers: {
       'Content-Type': 'application/json',
-      'x-apikey': '6242758367937c128d7c92b6'
+      'x-apikey': '6242758367937c128d7c92b6',
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
     contentType: 'application/json; charset=utf-8',
     success: function (result) {   deckLoad(currentDeck); retrieveDecks();  }
  });
+ retrieveDecks();
  });
 
  $("#deleteDeck").click(function (e){
+  if (CURRENTDECKID!=""){
+    $.ajax({
+      url: 'https://doncards-fa13.restdb.io/rest/accounts/'+CURRENTDECKID
+      ,
+      type: 'DELETE',
+      dataType: 'json',
+      data:currentDeck,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-apikey': '6242758367937c128d7c92b6',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      contentType: 'application/json; charset=utf-8',
+      success: function (result) {   }
+   });
+  }
+
+
   currentDeck = {
-    "deckName":"",
+    "deckName":"New Deck",
     "nonlands":{},
     "lands":{}
   };
   CURRENTDECKID = "";
   deckLoad(currentDeck);
+  retrieveDecks();
+  
  });
-
+ $("#newDeck").click(function (e){
+  currentDeck = {
+    "deckName":"New Deck",
+    "nonlands":{},
+    "lands":{}
+  };
+  CURRENTDECKID = "";
+  deckLoad(currentDeck);
+  retrieveDecks();
+ });
    /*$(".updL").each(function(){
   
      var name =  $(this).attr("id");
