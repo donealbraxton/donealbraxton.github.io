@@ -394,6 +394,10 @@ $( document ).ajaxComplete(function() {
   }); 
 });
 
+if(atFirst!=succeed){
+  tryAgain();
+}
+
 //----------------------Cookies and Beginning Code--------------------------------------------------------
 
 function setCookie(cname, cvalue, exdays) {
