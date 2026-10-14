@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap");
+
+:root {
+  --mana-white: #f4ead0;
+  --mana-blue: #3ea0d8;
+  --mana-black: #5b4a78;
+  --mana-red: #e85d3a;
+  --mana-green: #3cb371;
+  --gold: #f0c14b;
+  --gold-deep: #c4922a;
+  --ink: #100814;
+  --ink-soft: #1c1226;
+  --panel: rgba(22, 14, 34, 0.78);
+  --panel-strong: rgba(12, 8, 20, 0.92);
+  --text: #f7f1e4;
+  --text-dim: #cbbfa8;
+  --line: rgba(240, 193, 75, 0.28);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --radius-card: 4.75% / 3.5%;
+  --radius-ui: 18px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-ui: "Outfit", "Segoe UI", sans-serif;
+  --header-h: 76px;
+}

@@ -1,3 +1,8 @@
+import $ from 'jquery'
+import { deleteDeck as removeStoredDeck, findAccount, listDecks, login, saveDeck as persistDeck } from '../api/vault.js'
+
+window.$ = window.jQuery = $
+
 var loggedIn = false;
 var CURRENTID = "";
 var CURRENTDECKID = ""
@@ -33,25 +38,11 @@ $.ajaxSetup({
 
 
 function retrieveDecks(){
-  $.ajax({
-      url: 'https://doncards-fa13.restdb.io/rest/decks/'+CURRENTID
-      +'/decks',
-      type: 'GET',
-      dataType: 'json',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6'
-      },
-      contentType: 'application/json; charset=utf-8',
-      success: function (result) {
-        $("#deckRoll").empty();
-        allDecks = result;
-        allDecks.forEach(function (deck, index){
-          addDeck(deck);
-        });
-
-      }
-    });
+  $("#deckRoll").empty();
+  allDecks = listDecks(CURRENTID);
+  allDecks.forEach(function (deck){
+    addDeck(deck);
+  });
 }
 
 //----------------------BROKEN CODE GRAVEYARD -----------------------------
@@ -118,19 +109,19 @@ function landSpellCheck(x) {
 //---Adding in Spells and Lands Functions
 function addLand(name, count) {
   $("#land-fill").append(
-    '<div class="row"><div class="input-group"><input id="'+name+'" type="number"min="1"max="20" value="' + count
+    '<div class="deck-slot"><input id="'+name+'" type="number" min="1" max="20" value="' + count
     + '" class="form-control count-text udL">' +
     '<p onmouseover="showcard(this)" class="card-text">' + name +
-    '</p></div></div>'
+    '</p></div>'
   );
   addtoCurrent(name,count,"land");
 }
 function addSpell(name, count) {
   $("#card-fill").append(
-    '<div class="row"><div class="input-group"><input  id="'+name+'" type="number" min="1" max="4" value="' + count
+    '<div class="deck-slot"><input id="'+name+'" type="number" min="1" max="4" value="' + count
     + '" class="form-control count-text udC">' +
     '<p onmouseover="showcard(this)" class="card-text">' + name +
-    '</p></div></div>'
+    '</p></div>'
   );
   addtoCurrent(name,count,"cards");
 }
@@ -138,11 +129,8 @@ function addDeck(deck){
   var deckName = deck["deckName"];
   var deckID = deck["_id"];
   $("#deckRoll").append(
-    '<div class="col-sm-3"><div id='+deckID
-    +' class="card card-block">'+deckName
-    +'</div></div>'
+    '<button type="button" id="'+deckID+'" class="card card-block">'+deckName+'</button>'
   );
-
 }
 
 //-- Boolean Check Utilities
@@ -239,35 +227,29 @@ $(document).ready(function () {
 
   });
 
-  $("#login-form").submit(function (e) {
-    $.ajax({
-      url: 'https://doncards-fa13.restdb.io/rest/decks?q={"username": "'+
-      document.getElementById('inputUser').value+'"}',
-      type: 'GET',
-      dataType: 'json',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6'
-      },
-      contentType: 'application/json; charset=utf-8',
-      success: function (result) {
-        CURRENTID = result[0]["_id"];
-        var x = document.getElementById('inputUser').value;
-        var y = document.getElementById('inputPassword').value;
-        if (x == result[0]["username"] && y == result[0]["password"]) {
-          setCookie("username", x, 365);
-          loggedIn = true;
-          off();
-
-        } else {
-          alert("Incorrect Password");
-        }
-      },
-      error: function (error) {
-        alert("not working");
-      }
-    });
+  $("#login-form").submit(async function (e) {
     e.preventDefault();
+    const status = document.getElementById('auth-status');
+    try {
+      const account = await login(
+        document.getElementById('inputUser').value,
+        document.getElementById('inputPassword').value
+      );
+      CURRENTID = account._id;
+      setCookie("username", account.username, 365);
+      loggedIn = true;
+      if (status) {
+        status.textContent = '';
+      }
+      off();
+    } catch (error) {
+      if (status) {
+        status.textContent = error.message;
+        status.classList.add('is-error');
+      } else {
+        alert(error.message);
+      }
+    }
   });
 
 
@@ -294,56 +276,24 @@ $(document).ready(function () {
 
  $("#saveDeck").click(function (e){
    currentDeck["deckName"]=document.getElementById("deckname").value;
-   if(CURRENTID!=""){
-    $.ajax({
-      url: 'https://doncards-fa13.restdb.io/rest/decks/'+CURRENTID
-      +'/decks/'+CURRENTDECKID,
-      type: 'POST',
-      dataType: 'json',
-      data:currentDeck,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      contentType: 'application/json; charset=utf-8',
-      success: function (result) {      }
-    });
-  }
-  else
-  $.ajax({
-    url: 'https://doncards-fa13.restdb.io/rest/decks/'+CURRENTID
-    +'/decks',
-    type: 'POST',
-    dataType: 'json',
-    data:currentDeck,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-apikey': '6242758367937c128d7c92b6',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    contentType: 'application/json; charset=utf-8',
-    success: function (result) {   deckLoad(currentDeck); retrieveDecks();  }
- });
- retrieveDecks();
+   if (!CURRENTID) {
+     alert('Sign in before saving a deck.');
+     return;
+   }
+   const saved = persistDeck(CURRENTID, {
+     _id: CURRENTDECKID,
+     deckName: currentDeck.deckName,
+     lands: currentDeck.lands,
+     nonlands: currentDeck.nonlands,
+   });
+   CURRENTDECKID = saved._id;
+   currentDeck._id = saved._id;
+   retrieveDecks();
  });
 
  $("#deleteDeck").click(function (e){
-  if (CURRENTDECKID!=""){
-    $.ajax({
-      url: 'https://doncards-fa13.restdb.io/rest/accounts/'+CURRENTDECKID
-      ,
-      type: 'DELETE',
-      dataType: 'json',
-      data:currentDeck,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      contentType: 'application/json; charset=utf-8',
-      success: function (result) {   }
-   });
+  if (CURRENTID && CURRENTDECKID!=""){
+    removeStoredDeck(CURRENTID, CURRENTDECKID);
   }
 
 
@@ -434,24 +384,13 @@ function getCookie(cname) {
 function checkCookie() {
   let user = getCookie("username");
   if (user != "") {
-    alert("Welcome again " + user);
-    $.ajax({
-      url: 'https://doncards-fa13.restdb.io/rest/decks?q={"username": "'+
-      getCookie("username")+'"}',
-      type: 'GET',
-      dataType: 'json',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-apikey': '6242758367937c128d7c92b6'
-      },
-      contentType: 'application/json; charset=utf-8',
-      success: function (result) {
-        CURRENTID = result[0]["_id"];
-      }
-    });
+    const account = findAccount(user);
+    if (!account) {
+      return;
+    }
+    CURRENTID = account._id;
     loggedIn = true;
     off();
-  } else {
   }
 }
 
@@ -460,11 +399,14 @@ function on() {
 }
 
 function off() {
-  
   deckLoad(currentDeck);
   retrieveDecks();
-  document.getElementById("overlay").style.display = "none";
-  $('.hidden').css('display', 'inline');
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+  overlay.classList.add("is-dismissed");
+  document.querySelectorAll(".hidden").forEach(function (section) {
+    section.classList.add("is-revealed");
+  });
 }
 
 
@@ -540,5 +482,13 @@ function showcard(x) {
 
 }
 
+window.keyupFunction = keyupFunction
+window.showcard = showcard
 
-  //---------------------------------------------------------------------//
+export function bootDeckBuilder() {
+  const searchInput = document.getElementById('name')
+  if (searchInput) {
+    searchInput.addEventListener('keydown', keyupFunction)
+  }
+  checkCookie()
+}

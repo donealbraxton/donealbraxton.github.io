@@ -1,0 +1,274 @@
+.site-main--wide {
+  width: min(1480px, 100%);
+}
+
+.workshop.hidden.is-revealed {
+  display: grid;
+}
+
+.workshop {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "toolbar toolbar toolbar"
+    "search search search"
+    "preview spells lands"
+    "vault vault vault";
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.workshop-toolbar { grid-area: toolbar; }
+.workshop-search { grid-area: search; }
+.workshop-preview { grid-area: preview; }
+.workshop-spells { grid-area: spells; }
+.workshop-lands { grid-area: lands; }
+.workshop-vault { grid-area: vault; }
+
+.workshop-toolbar,
+.workshop-search,
+.workshop-preview,
+.workshop-spells,
+.workshop-lands,
+.workshop-vault {
+  padding: 1.15rem 1.25rem;
+  border-radius: 24px;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.workshop-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.search-bar #name {
+  flex: 1 1 280px;
+  min-width: 220px;
+}
+
+.search-bar #add-count {
+  width: 5.5rem;
+  flex: 0 0 5.5rem;
+}
+
+.search-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  min-height: 1.6rem;
+  margin-top: 0.85rem;
+  color: var(--text-dim);
+}
+
+.search-meta p {
+  margin: 0;
+}
+
+.count-label {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.workshop-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 32rem;
+}
+
+.preview-card,
+#myImg.preview-card {
+  width: min(100%, 320px);
+  min-height: 440px;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+}
+
+.preview-name,
+.preview-artist {
+  margin: 0.7rem 0 0;
+  font-size: 1.05rem;
+}
+
+.workshop-spells,
+.workshop-lands {
+  display: flex;
+  flex-direction: column;
+  min-height: 32rem;
+}
+
+.panel-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.workshop h2 {
+  margin: 0 0 1rem;
+  font-size: 1.45rem;
+}
+
+.deck-slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+  min-height: 18rem;
+  max-height: 58vh;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.deck-slot,
+.deck-slot-list .row,
+.deck-slot-list .input-group {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(240, 193, 75, 0.12);
+}
+
+.deck-slot-list .row {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.deck-slot-list .input-group {
+  width: 100%;
+}
+
+.count-text,
+.deck-slot-list .count-text {
+  width: 100%;
+  max-width: none;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 0.65rem 0.4rem;
+}
+
+.card-text {
+  margin: 0;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.card-text:hover {
+  color: var(--gold);
+}
+
+.workshop-vault h2 {
+  margin-bottom: 0.9rem;
+}
+
+#deckRoll {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.85rem;
+  overflow: visible;
+}
+
+.col-sm-3 {
+  min-width: 0;
+}
+
+.card.card-block,
+.card-block {
+  min-height: 118px;
+  display: grid;
+  place-items: center;
+  padding: 1.1rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(240, 193, 75, 0.16), rgba(91, 74, 120, 0.4));
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.mana-line {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.symbol-img {
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 1100px) {
+  .workshop {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "toolbar toolbar"
+      "search search"
+      "preview preview"
+      "spells lands"
+      "vault vault";
+  }
+
+}
+
+@media (max-width: 720px) {
+  .workshop {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "toolbar"
+      "search"
+      "preview"
+      "spells"
+      "lands"
+      "vault";
+  }
+
+  .workshop-preview,
+  .workshop-spells,
+  .workshop-lands {
+    min-height: 0;
+  }
+
+  .preview-card,
+  #myImg.preview-card {
+    min-height: 360px;
+  }
+}

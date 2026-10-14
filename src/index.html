@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome | Doneal's Deck Builder</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="site">
+      <div data-layout="header"></div>
+
+      <main class="site-main site-main--home">
+        <section class="hero">
+          <p class="hero__kicker">Three steps</p>
+          <h1 class="hero__title">Doneal's Deck Builder</h1>
+          <p class="hero__lede">
+            Make an account, open the builder, then search Scryfall and save lists in your vault. Same idea as the
+            original project — clearer path through the pages.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary guest-only" href="/signup.html">Create account</a>
+            <a class="btn btn-ghost guest-only" href="/signin.html">Sign in</a>
+            <a class="btn btn-primary member-only" href="/decks.html">Continue building</a>
+            <a class="btn btn-ghost guest-only" href="/decks.html">Open builder</a>
+          </div>
+        </section>
+
+        <ol class="step-grid">
+          <li class="step-card">
+            <p class="step-num">1</p>
+            <h2>Account</h2>
+            <p>Create a local vault login, then sign in. Your decks stay in this browser.</p>
+            <a href="/signup.html">Create account</a>
+          </li>
+          <li class="step-card">
+            <p class="step-num">2</p>
+            <h2>Builder</h2>
+            <p>Search a card, preview it, set a copy count, and add it as a spell or a land.</p>
+            <a href="/decks.html">Open builder</a>
+          </li>
+          <li class="step-card">
+            <p class="step-num">3</p>
+            <h2>Vault</h2>
+            <p>Name the list, save it, and reload it from the vault strip under the workshop.</p>
+            <a href="/about.html">How it works</a>
+          </li>
+        </ol>
+
+        <section class="home-cards" aria-label="Example Magic cards">
+          <figure class="card-frame">
+            <img id="home-card-left" class="card-image" alt="Loading card" />
+          </figure>
+          <figure class="card-frame">
+            <img id="home-card-right" class="card-image" alt="Loading card" />
+          </figure>
+        </section>
+      </main>
+
+      <div data-layout="footer"></div>
+    </div>
+
+    <script type="module" src="/scripts/pages/home.js"></script>
+  </body>
+</html>

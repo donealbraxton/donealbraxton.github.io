@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design notes | Doneal's Deck Builder</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="site">
+      <div data-layout="header"></div>
+      <main class="site-main">
+        <article class="about-panel" style="width: min(860px, 100%)">
+          <p class="hero__kicker">Chronicle</p>
+          <h1>What was here, and what changed</h1>
+          <p>
+            In 2022 this was a GitHub Pages senior project: Bootstrap Cover, gray gradient, and four flat HTML files.
+            The product idea is the same. The chrome is new.
+          </p>
+          <h2>Kept</h2>
+          <p>Home hero and Get Started, two Scryfall cards, About, sign up / sign in, search-add-save decks.</p>
+          <h2>Changed</h2>
+          <p>
+            Vite <code>src/</code> layout, shared header, no Bootstrap CSS, five-color playmat palette, Fraunces + Outfit
+            type, clearer page names.
+          </p>
+          <div class="mana-story" aria-label="New color language">
+            <div class="mana-chip chip-w">White</div>
+            <div class="mana-chip chip-u">Blue</div>
+            <div class="mana-chip chip-b">Black</div>
+            <div class="mana-chip chip-r">Red</div>
+            <div class="mana-chip chip-g">Green</div>
+          </div>
+          <p style="margin-top: 1.2rem">
+            Full diagrams live in
+            <a href="/docs/design-evolution.md">/docs/design-evolution.md</a>
+            (Mermaid flowcharts, pie of the accent mix, and the deck workshop sequence).
+          </p>
+        </article>
+      </main>
+      <div data-layout="footer"></div>
+    </div>
+    <script type="module" src="/scripts/pages/design.js"></script>
+  </body>
+</html>

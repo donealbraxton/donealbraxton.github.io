@@ -1,0 +1,333 @@
+.hero {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+}
+
+.hero__kicker {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(240, 193, 75, 0.12);
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.hero__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.8rem, 8vw, 5.6rem);
+  background: linear-gradient(90deg, var(--mana-white), var(--gold), var(--mana-red), var(--mana-green), var(--mana-blue));
+  background-size: 180% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s ease-in-out infinite, floating 4s ease-in-out infinite;
+}
+
+.hero__lede {
+  margin: 0 auto 1.6rem;
+  max-width: 34rem;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.step-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 2.4rem;
+  padding: 0;
+  text-align: left;
+}
+
+.step-card {
+  margin: 0;
+  padding: 1.15rem 1.2rem;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.step-num {
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.step-card h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.25rem;
+}
+
+.step-card p {
+  margin: 0 0 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.auth-copy {
+  color: var(--text-dim);
+  margin-top: 0;
+}
+
+.how-list {
+  padding-left: 1.1rem;
+  color: var(--text-dim);
+}
+
+.how-list li {
+  margin: 0.45rem 0;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 240px));
+  gap: 1.5rem;
+  justify-content: center;
+  justify-items: center;
+}
+
+.card-frame {
+  margin: 0;
+  padding: 0.7rem;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(240, 193, 75, 0.45), rgba(255, 255, 255, 0.05) 28%, rgba(0, 0, 0, 0.2)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  transform: rotate(var(--tilt, -2deg));
+}
+
+.card-frame:nth-child(2) {
+  --tilt: 2.5deg;
+}
+
+.card-image {
+  width: 240px;
+  min-height: 334px;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-card);
+  display: block;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.btn-primary,
+.btn-lg.btn-primary {
+  color: var(--ink);
+  background: linear-gradient(180deg, #ffe38a, var(--gold) 40%, var(--gold-deep));
+  box-shadow: 0 8px 24px rgba(240, 193, 75, 0.28);
+}
+
+.btn-ghost {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+}
+
+.btn-new {
+  background: linear-gradient(180deg, #7be3a3, var(--mana-green));
+  color: #062214;
+}
+
+.btn-save {
+  background: linear-gradient(180deg, #7ec8f0, var(--mana-blue));
+  color: #041824;
+}
+
+.btn-danger,
+.btn-outline-danger {
+  background: linear-gradient(180deg, #ff8a6b, var(--mana-red));
+  color: #2a0804;
+}
+
+.btn-outline-warning,
+.btn-outline-primary,
+.btn-outline-danger {
+  border: 0;
+}
+
+.auth-card,
+.form-signin,
+.about-panel {
+  width: min(420px, 100%);
+  margin: 2rem auto;
+  padding: 1.6rem;
+  border-radius: 28px;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.about-panel {
+  width: min(720px, 100%);
+}
+
+.auth-card h1,
+.form-signin h1,
+.about-panel h1 {
+  margin-top: 0;
+}
+
+.auth-status {
+  min-height: 1.2em;
+  margin: 0 0 0.8rem;
+  color: var(--gold);
+  font-size: 0.92rem;
+}
+
+.auth-status.is-error {
+  color: #ffb4a2;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.field label,
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.form-control,
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="number"] {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+}
+
+.form-control:focus,
+input:focus {
+  outline: 2px solid var(--mana-blue);
+  background: rgba(62, 160, 216, 0.08);
+  color: var(--text) !important;
+  text-align: left !important;
+}
+
+.overlay {
+  position: relative;
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+}
+
+.overlay.is-dismissed {
+  display: none !important;
+}
+
+.hidden:not(.is-revealed) {
+  display: none !important;
+}
+
+#deckname {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  min-width: min(420px, 100%);
+  border: 0;
+  background: transparent !important;
+  color: var(--gold) !important;
+  text-align: left !important;
+  padding: 0.2rem 0;
+}
+
+.mana-story {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 1.4rem 0 0;
+}
+
+.mana-chip {
+  padding: 0.7rem 0.5rem;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.chip-w { background: var(--mana-white); color: #3a311c; }
+.chip-u { background: var(--mana-blue); color: #041525; }
+.chip-b { background: #2a2238; color: #ddd0f3; }
+.chip-r { background: var(--mana-red); color: #2d0904; }
+.chip-g { background: var(--mana-green); color: #062214; }
+
+@keyframes floating {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes shimmer {
+  0%,
+  100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+#aa {
+  font-size: 1.4rem;
+  color: var(--gold);
+}
+
+@media (max-width: 720px) {
+  .step-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-cards,
+  .mana-story {
+    grid-template-columns: 1fr;
+  }
+
+  .card-frame {
+    transform: none;
+  }
+}

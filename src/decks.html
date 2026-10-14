@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Builder | Doneal's Deck Builder</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="site">
+      <div data-layout="header"></div>
+
+      <main class="site-main site-main--wide">
+        <section id="overlay" class="overlay" aria-label="Sign in">
+          <form id="login-form" class="auth-card">
+            <p class="hero__kicker">Your decks</p>
+            <h1>Please sign in</h1>
+            <div class="field">
+              <label for="inputUser">Username</label>
+              <input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus />
+            </div>
+            <div class="field">
+              <label for="inputPassword">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+            </div>
+            <p>
+              <a href="/signin.html">Use the sign-in page</a>
+            ·
+            <a href="/signup.html">Create an account</a>
+            </p>
+            <p id="auth-status" class="auth-status" role="status"></p>
+            <button id="login-form-submit" class="btn btn-primary" type="submit">Sign in</button>
+          </form>
+        </section>
+
+        <div class="workshop hidden">
+          <section class="workshop-toolbar" aria-label="Deck actions">
+            <label for="deckname" class="visually-hidden">Deck name</label>
+            <input type="text" id="deckname" />
+            <div class="toolbar-actions">
+              <button id="newDeck" class="btn btn-new" type="button">New</button>
+              <button id="deleteDeck" class="btn btn-danger" type="button">Delete</button>
+              <button id="saveDeck" class="btn btn-save" type="button">Save</button>
+            </div>
+          </section>
+
+          <section class="workshop-search" aria-label="Card search">
+            <div class="search-bar">
+              <label for="name" class="visually-hidden">Search cards</label>
+              <input id="name" type="search" class="form-control" placeholder="Search Scryfall for a card" aria-label="Search" />
+              <button id="search" type="button" class="btn btn-ghost">Search</button>
+              <label for="add-count" class="count-label">Copies</label>
+              <input id="add-count" type="number" min="1" max="21" value="1" class="form-control count-text" />
+              <button id="addCard" class="btn btn-primary" type="button">Add to deck</button>
+            </div>
+            <div class="search-meta">
+              <p id="search-cardName"></p>
+              <p id="search-artist"></p>
+              <div id="mana-cost" class="mana-line"></div>
+            </div>
+          </section>
+
+          <section class="workshop-preview" aria-label="Card preview">
+            <p class="panel-kicker">Preview</p>
+            <img id="myImg" class="preview-card" src="" alt="Selected card" />
+            <p id="cardName" class="preview-name">Card Name:</p>
+            <p id="artist" class="preview-artist">Artist:</p>
+          </section>
+
+          <section class="workshop-spells" aria-label="Spells in deck">
+            <p class="panel-kicker">Spells</p>
+            <h2>Nonland cards</h2>
+            <div id="card-fill" class="deck-slot-list"></div>
+          </section>
+
+          <section class="workshop-lands" aria-label="Lands in deck">
+            <p class="panel-kicker">Mana base</p>
+            <h2>Lands</h2>
+            <div id="land-fill" class="deck-slot-list"></div>
+          </section>
+
+          <section class="workshop-vault" aria-label="Saved decks">
+            <p class="panel-kicker">Vault</p>
+            <h2>Saved decks</h2>
+            <div id="deckRoll"></div>
+          </section>
+        </div>
+      </main>
+
+      <div data-layout="footer"></div>
+    </div>
+
+    <script type="module" src="/scripts/pages/decks.js"></script>
+  </body>
+</html>

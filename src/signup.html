@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up | Doneal's Deck Builder</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="site">
+      <div data-layout="header"></div>
+
+      <main class="site-main site-main--narrow">
+        <form id="login-form" class="auth-card">
+          <p class="hero__kicker">Step 1 · Account</p>
+          <h1>Create an account</h1>
+          <p class="auth-copy">This unlocks the builder and the vault in this browser.</p>
+          <div class="field">
+            <label for="inputUser">Username</label>
+            <input type="text" id="inputUser" class="form-control" placeholder="Planeswalker name" required autofocus />
+          </div>
+          <div class="field">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+          </div>
+          <div class="field">
+            <label for="inputCPassword">Confirm password</label>
+            <input type="password" id="inputCPassword" class="form-control" placeholder="Confirm password" required />
+          </div>
+          <p>
+            <a href="/signin.html">I already have an account</a>
+          </p>
+          <p id="auth-status" class="auth-status" role="status"></p>
+          <button id="login-form-submit" class="btn btn-primary" type="submit">Sign up</button>
+        </form>
+      </main>
+
+      <div data-layout="footer"></div>
+    </div>
+
+    <script type="module" src="/scripts/pages/signup.js"></script>
+  </body>
+</html>
