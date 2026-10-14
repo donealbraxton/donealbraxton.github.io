@@ -1,0 +1,32 @@
+---
+description: Intentional UI for the deck builder. Extend the playmat system; avoid generic AI styling.
+globs: src/**/*.{html,css,js}
+alwaysApply: false
+---
+
+# Deck builder UI
+
+This is a Magic deck workshop, not a SaaS landing page. Keep the identity in `src/styles/tokens.css`: dark playmat, WUBRG used for meaning (blue search/save, red delete, green new, gold primary), Fraunces for titles, Outfit for UI. Extend tokens before adding one-off colors, sizes, or radii.
+
+## Do not add
+
+- Purple-blue gradients, neon, gradient text, decorative blobs, orbs, or stock illustrations
+- Glass panels, backdrop blur, or heavy shadows used as decoration
+- A card around every section, identical card grids, centered marketing heroes inside the workshop
+- Pill shapes, 18px+ radii, or circular icon badges as the default
+- Icons, badges, all-caps tracking, or faint gray text on every label
+- Emoji as icons, fake metrics, or motion that does not explain state
+
+Mana color and gold foil are product meaning. Do not restyle the app into a generic dark dashboard to “clean it up.”
+
+## Hierarchy
+
+Each screen has one job, one first focal point, and one primary action. Secondary actions stay text or quiet buttons. Align related controls to shared edges. Use the spacing already in the stylesheets; do not invent gaps.
+
+Workshop density beats splash whitespace. Home may introduce the product. Builder, vault, and account screens stay task-shaped.
+
+## States and access
+
+Cover loading, empty, error, disabled, and destructive confirm with real copy and a next step. Do not rely on color alone. Keep visible focus, WCAG AA text contrast, and about 44px touch targets. Honor `prefers-reduced-motion`.
+
+Change only the screen you are working on. Match `layout.js`, `components.css`, and `workshop.css` instead of introducing a new component look.

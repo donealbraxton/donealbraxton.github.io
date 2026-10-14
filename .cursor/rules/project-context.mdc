@@ -1,0 +1,8 @@
+---
+description: Load the compact project brief instead of relying on long chat history.
+alwaysApply: true
+---
+
+Before changing this repo, read `docs/project-context.md` and treat it as the source of truth for structure, design, storage, and how to run the app.
+
+Do not restore the old GitHub Pages flat-file layout, Bootstrap Cover chrome, or RestDB. After a meaningful decision or layout change, update `docs/project-context.md` in the same turn so later chats stay small.
